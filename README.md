@@ -10,4 +10,11 @@ Commit : #c2e9f76e3649a268cb0ee2045037f52fa8a872c0
 
 **Etape 2**  
 ...  
+Commit : #...  
+
+**Etape 3**  
+A cette étape nous configurons le serveur apache pour qu'il fonctionne comme reverse proxy.
+Pour ceci nous allons ajouter des sites en ajoutant des modules au fichier httpd.conf 
+
+
 Commit : #...
