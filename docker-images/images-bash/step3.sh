@@ -10,7 +10,7 @@ cd ../apache-reverse-proxy-image/content
 
 # Clean the conf file
 rm -f 001-default.conf
-cat 001-default.conf.head >> 001-default.conf
+cat HEAD.001-default.conf >> 001-default.conf
 
 # Execute the container with express server whitout mapping
 docker build -t res/express ../../express-image
@@ -20,8 +20,8 @@ docker run -d --name express res/express
 express_ip=$(docker inspect express | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
 
 # Write conf file for routing the express server
-echo ProxyPass "\"/api/students/\"" "\"http://$express_ip:3000/\"" >> 001-default.conf
-echo ProxyPassReverse "\"/api/students/\"" "\"http://$express_ip:3000/\"" >> 001-default.conf
+echo ProxyPass "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
+echo ProxyPassReverse "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
 
 # Execute the container with apache server whitout mapping
 docker build -t res/apache-php ../../apache-php-image
@@ -35,7 +35,7 @@ echo ProxyPass "\"/\"" "\"http://$apache_static_ip:80/\"" >> 001-default.conf
 echo ProxyPassReverse "\"/\"" "\"http://$apache_static_ip:80/\"" >> 001-default.conf
 
 # Close the conf file
-cat 001-default.conf.foot >> 001-default.conf
+cat FOOT.001-default.conf >> 001-default.conf
 
 # Get back to reverse proxy image dir
 cd ..
