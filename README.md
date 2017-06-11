@@ -102,7 +102,7 @@ Un script utilisant AJAX et jQuery va récupérer les données envoyées par **e
 		console.log("Loading APODs");
 
 		function loadAPOD() {
-			$.getJSON( "/api/students/", function ( apod ) {
+			$.getJSON( "/api/apod/", function ( apod ) {
 				console.log(apod);
 				var title = apod.title;
 				var src = apod.image;
@@ -119,4 +119,4 @@ Un script utilisant AJAX et jQuery va récupérer les données envoyées par **e
 
 Remarque : on voit que lorsque l'image est modifiée, on va attendre un petit délai avant d'afficher le titre. En effet, on va laisser le temps à l'image de charger.
 
-Commit : #
+Commit : #f45582d5e876f8cd65cd335cbe117d283b19ba9f
