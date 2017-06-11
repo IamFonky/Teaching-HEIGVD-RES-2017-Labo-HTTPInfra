@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set  -e
+
+# Add setup
+echo $STATIC_APP
+echo $DYNAMIC_APP
+php /var/apache2/templates/config-template.php > /var/apache2/sites-available/001-default.conf
+rm -f /var/run/apache2/apache2.pid
+
+exec apache2 -DFOREGROUND

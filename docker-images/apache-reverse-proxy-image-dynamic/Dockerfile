@@ -1,7 +1,10 @@
 FROM php:5.6-apache
 
-COPY apache2-foreground /usr/local/bin/
+RUN apt-get update && \
+	apt-get install -y vim
 
+COPY apache2-foreground /usr/local/bin/
+COPY templates /var/apache2/templates
 COPY content/ /etc/apache2/sites-available
 
 RUN a2enmod proxy proxy_http
