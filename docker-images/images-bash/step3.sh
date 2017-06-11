@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #Step 1 and 2 have to be executed before this step!
+#Clean
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 
 # go to reverse proxy image dir
 cd ../apache-reverse-proxy-image/content
