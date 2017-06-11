@@ -20,8 +20,8 @@ docker run -d --name express res/express
 express_ip=$(docker inspect express | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
 
 # Write conf file for routing the express server
-echo ProxyPass "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
-echo ProxyPassReverse "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
+echo ProxyPass "\"/api/apod/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
+echo ProxyPassReverse "\"/api/apod/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
 
 # Execute the container with apache server whitout mapping
 docker build -t res/apache-php ../../apache-php-image
