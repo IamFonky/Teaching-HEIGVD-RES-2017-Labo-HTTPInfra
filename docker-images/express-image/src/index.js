@@ -4,8 +4,15 @@ var chance = new Chance();
 var express = require('express');
 var app = express();
 
+<<<<<<< Updated upstream
 app.get('/', function(req, res) {
 	res.send(generateStudent());
+=======
+var randomApod = require('random-apod');
+
+app.get('/api/apod', function(req, res) {
+	res.send(randomApod());
+>>>>>>> Stashed changes
 });
 
 app.listen(6666, function() {
