@@ -4,4 +4,4 @@
 docker build -t res/express ../express-image
 
 # Execute the contener and map the local 9090 port on the 80 port of the contener
-sudo docker run res/express
+sudo docker run -p 9090:6666 res/express
