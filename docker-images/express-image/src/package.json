@@ -1,0 +1,22 @@
+{
+  "name": "pbandgati",
+  "version": "0.1.0",
+  "description": "Our app for the last RES lab.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamFonky/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra.git"
+  },
+  "author": "P-B Monaco & Gaetan Othenin-Girard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamFonky/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/issues"
+  },
+  "homepage": "https://github.com/IamFonky/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra#readme",
+  "dependencies": {
+    "chance": "^1.0.9"
+  }
+}
