@@ -9,8 +9,8 @@ $(function() {
 			$(".apodTitle").text(title);
 			$(".apodImage").attr('src', src);
 		});
-	}
-});
+	};
 
-loadAPOD();
-setInterval( loadAPOD, 2000 );
+	loadAPOD();
+	setInterval( loadAPOD, 2000 );
+});
