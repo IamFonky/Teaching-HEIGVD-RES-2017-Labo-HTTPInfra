@@ -7,4 +7,6 @@ COPY src /opt/app
 
 RUN cd /opt/app; npm install
 
+EXPOSE 6666
+
 CMD ["node", "/opt/app/index.js"]
