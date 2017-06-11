@@ -3,7 +3,7 @@ Labo de l'année en RES!
 
 **Etape 1**  
 Il s'agit tout d'abord de créer un container docker afin de contenir le serveur HTTP.
-Une image est créée dans docker-images/apache-php-image/ . Le fichier Dockerfile va copier le dossier contenant le site web directement dans le repertoire web du serveur http.  
+Une image est créée dans docker-images/apache-php-image/. Le fichier Dockerfile va copier le dossier contenant le site web directement dans le répertoire web du serveur HTTP.  
 
 **Dockerfile :**
 
@@ -16,13 +16,13 @@ Le but ensuite est de build l'image et lancer un nouveau conteneur :
 	docker build -t res/apache-php ../apache-php-image
 	docker run --name apache_static -p 9090:80 res/apache-php
 
-Il est ensuite possible d'accéder au site web via localhost:9090.
+Il est ensuite possible d'accéder au site web via *localhost:9090*.
 
-Commit : #c2e9f76e3649a268cb0ee2045037f52fa8a872c0  
+Commit : #e5bcaf164b90d07b60c9baf4af3772994089c902 
   
 
 **Etape 2**  
-Pour cette étape, nous allons créer un conteneur docker allant exécuter un serveur HTML via la libraire **express**.
+Pour cette étape, nous allons créer un conteneur docker allant exécuter un serveur HTTP via la libraire **express**.
 
 Premièrement, il faut créer une image docker exécutant **node.js** et en copiant le contenu du répertoire *src* dans le dossier */opt/app* dans le conteneur. Puis, on va exécuter l'installation des modules *npm* et enfin lancer l'application *index.js* afin qu'on puisse y avoir accès dès que le conteneur est lancé.
 
@@ -89,7 +89,7 @@ Le fichier 001-default.conf est créé grace au script step3.sh. Il
 récupére les adresse ip des deux serveurs et écris les règles pour chacun d'eux.
 
 
-Commit : #...
+Commit : #6bfe62d280aed6913e418a82dd4b3f7fc7922b7d
 
 **Etape 4**
 Dans cette quatrième étape, nous allons utilisé l'infrastructure mise en place lors de points précédents afin de réaliser une page web mettant certains composants automatiquement à jour sans que celle-ci ne soit rechargée.
@@ -119,4 +119,4 @@ Un script utilisant AJAX et jQuery va récupérer les données envoyées par **e
 
 Remarque : on voit que lorsque l'image est modifiée, on va attendre un petit délai avant d'afficher le titre. En effet, on va laisser le temps à l'image de charger.
 
-Commit : #f45582d5e876f8cd65cd335cbe117d283b19ba9f
+Commit : #6bfe62d280aed6913e418a82dd4b3f7fc7922b7d
