@@ -94,7 +94,7 @@ Commit : #...
 **Etape 4**
 Dans cette quatrième étape, nous allons utilisé l'infrastructure mise en place lors de points précédents afin de réaliser une page web mettant certains composants automatiquement à jour sans que celle-ci ne soit rechargée.
 
-Un script utilisant AJAX et jQuery va récupérer les données envoyées par **express** et modifier une balise de texte et une image sur la page web en y ajoutant les valeurs prises dans le JSON. Les valeurs sont modifiées toutes les 5 secondes.
+Un script utilisant AJAX et jQuery va récupérer les données envoyées par **express** et modifier une balise de texte et une image sur la page web en y ajoutant les valeurs prises dans le JSON. Les valeurs sont modifiées toutes les 7 secondes.
 
 **apod.js :**
 
@@ -102,17 +102,21 @@ Un script utilisant AJAX et jQuery va récupérer les données envoyées par **e
 		console.log("Loading APODs");
 
 		function loadAPOD() {
-			$.getJSON( "/api/apod/", function ( apod ) {
+			$.getJSON( "/api/students/", function ( apod ) {
 				console.log(apod);
 				var title = apod.title;
 				var src = apod.image;
-				$(".apodTitle").text(title);
 				$(".apodImage").attr('src', src);
+				setTimeout(function(){
+				  $(".apodTitle").text(title);
+				}, 2000);
 			});
 		};
 
 		loadAPOD();
-		setInterval( loadAPOD, 5000 );
+		setInterval( loadAPOD, 7000 );
 	});
+
+Remarque : on voit que lorsque l'image est modifiée, on va attendre un petit délai avant d'afficher le titre. En effet, on va laisser le temps à l'image de charger.
 
 Commit : #
