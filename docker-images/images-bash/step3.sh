@@ -13,6 +13,7 @@ rm -f 001-default.conf
 cat HEAD.001-default.conf >> 001-default.conf
 
 # Execute the container with express server whitout mapping
+docker build -t res/express ../../express-image
 docker run -d --name express res/express
 
 # Get express ip
@@ -23,6 +24,7 @@ echo ProxyPass "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-defaul
 echo ProxyPassReverse "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
 
 # Execute the container with apache server whitout mapping
+docker build -t res/apache-php ../../apache-php-image
 docker run -d --name apache_static res/apache-php
 
 # Get apache_static ip
