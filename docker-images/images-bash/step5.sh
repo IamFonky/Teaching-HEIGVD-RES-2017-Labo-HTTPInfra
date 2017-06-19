@@ -2,8 +2,8 @@
 
 #Step 1 and 2 have to be executed before this step!
 #Clean
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+#docker stop $(docker ps -a -q)
+#docker rm $(docker ps -a -q)
 
 # go to reverse proxy image dir
 #cd ../apache-reverse-proxy-image/content
@@ -14,9 +14,9 @@ docker rm $(docker ps -a -q)
 #
 ## Execute the container with express server whitout mapping
 #docker build -t res/express ../../express-image
-docker run -d --name express res/express
+#docker run -d --name express res/express
 #
-## Get express ip
+## Get express ip1
 #express_ip=$(docker inspect express | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
 #
 ## Write conf file for routing the express server
@@ -25,7 +25,7 @@ docker run -d --name express res/express
 #
 ## Execute the container with apache server whitout mapping
 #docker build -t res/apache-php ../../apache-php-image
-docker run -d --name apache_static res/apache-php
+#docker run -d --name apache_static res/apache-php
 #
 ## Get apache_static ip
 #apache_static_ip=$(docker inspect apache_static | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
@@ -40,11 +40,13 @@ docker run -d --name apache_static res/apache-php
 # Get back to reverse proxy image dir
 #cd ..
 
+
+
 # Build the reverse-proxy image (warning, it has to be executed in the image directory)
 docker build -t res/reverse-proxy-2 ../apache-reverse-proxy-image-dynamic
 
 # Execute the reverse proxy container
-docker run -p 8080:80 res/reverse-proxy-2
+docker run -p 8080:80 -e DYNAMIC_APP=172.17.0.2 -e STATIC_APP=172.17.0.3 res/reverse-proxy-2
 
 
 #docker run -it php:5.6-apache /bin/bash
