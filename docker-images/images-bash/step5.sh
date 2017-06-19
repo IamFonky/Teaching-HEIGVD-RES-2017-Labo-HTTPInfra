@@ -2,8 +2,8 @@
 
 #Step 1 and 2 have to be executed before this step!
 #Clean
-#docker stop $(docker ps -a -q)
-#docker rm $(docker ps -a -q)
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 
 # go to reverse proxy image dir
 #cd ../apache-reverse-proxy-image/content
@@ -14,10 +14,10 @@
 #
 ## Execute the container with express server whitout mapping
 #docker build -t res/express ../../express-image
-#docker run -d --name express res/express
+docker run -d --name express res/express
 #
 ## Get express ip1
-#express_ip=$(docker inspect express | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
+express_ip=$(docker inspect express | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
 #
 ## Write conf file for routing the express server
 #echo ProxyPass "\"/api/students/\"" "\"http://$express_ip:6666/\"" >> 001-default.conf
@@ -25,10 +25,10 @@
 #
 ## Execute the container with apache server whitout mapping
 #docker build -t res/apache-php ../../apache-php-image
-#docker run -d --name apache_static res/apache-php
+docker run -d --name apache_static res/apache-php
 #
 ## Get apache_static ip
-#apache_static_ip=$(docker inspect apache_static | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
+apache_static_ip=$(docker inspect apache_static | grep -i "\"ipaddress\"" | tail -n 1 | cut -d "\"" -f4)
 #
 ## Write conf file for routing the express server
 #echo ProxyPass "\"/\"" "\"http://$apache_static_ip:80/\"" >> 001-default.conf
@@ -46,7 +46,7 @@
 docker build -t res/reverse-proxy-2 ../apache-reverse-proxy-image-dynamic
 
 # Execute the reverse proxy container
-docker run -p 8080:80 -e DYNAMIC_APP=172.17.0.2 -e STATIC_APP=172.17.0.3 res/reverse-proxy-2
+docker run -p 8080:80 -e DYNAMIC_APP=$express_ip -e STATIC_APP=$apache_static_ip res/reverse-proxy-2
 
 
 #docker run -it php:5.6-apache /bin/bash
